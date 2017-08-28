@@ -12,9 +12,9 @@
 ## To run, with login:
 # docker run -it -p 5432:5432 --name postgres --network some-network mononoke/postgres
 ## To run in background:
-# docker run -d -p 5436:5432 -e POSTGRES_PASSWORD=cmsp -e POSTGRES_USER=cms -e POSTGRES_DB=cms --name postgres  postgres
+# docker run -d -p 5432:5432 -e POSTGRES_PASSWORD=sonarPwd$ -e POSTGRES_USER=sonar -e POSTGRES_DB=sonar --name postgres  postgres
 ## To run in foreground:
-# docker run -it -p 5436:5432 -e POSTGRES_PASSWORD=cmsp -e POSTGRES_USER=cms -e POSTGRES_DB=cms --name postgres  postgres
+# docker run -it -p 5432:5432 --network ci-network -e POSTGRES_PASSWORD=sonarPwd$ -e POSTGRES_USER=sonar -e POSTGRES_DB=sonar --name postgres  mononoke/postgres:9.6.2
 ## To login when running
 # docker exec -i -t (containerId) bash # obtain the containerId from docker ps
 ###### Only do this once up and running and initialised
