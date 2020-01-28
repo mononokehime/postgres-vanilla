@@ -3,7 +3,7 @@
 ###########################################################################
 ################################################
 # Dockerfile for the Postgres image (Official site https://hub.docker.com/_/postgres/)
-# Extends: postgres:9.6.2
+# Extends: postgres:12.1-alpine
 # Installs the following software:
 # postgres
 ################################################
@@ -14,16 +14,16 @@
 ## To run in background:
 # docker run -d -p 5432:5432 -e POSTGRES_PASSWORD=sonarPwd$ -e POSTGRES_USER=sonar -e POSTGRES_DB=sonar --name postgres  postgres
 ## To run in foreground:
-# docker run -it -p 5432:5432 --network ci-network -e POSTGRES_PASSWORD=sonarPwd$ -e POSTGRES_USER=sonar -e POSTGRES_DB=sonar --name postgres  mononoke/postgres:9.6.2
+# docker run -it -p 5432:5432 --network ci-network -e POSTGRES_PASSWORD=sonarPwd$ -e POSTGRES_USER=sonar -e POSTGRES_DB=sonar --name postgres  mononoke/postgres:12.1-alpine
 ## To login when running
 # docker exec -i -t (containerId) bash # obtain the containerId from docker ps
 ###### Only do this once up and running and initialised
 ## to tag
-# docker tag postgres mononoke/postgres:9.6.2
+# docker tag postgres mononoke/postgres:12.1-alpine
 ## to push
-# docker push mononoke/postgres:9.6.2
+# docker push mononoke/postgres:12.1-alpine
 ## to pull
-# docker pull mononoke/postgres:9.6.2
+# docker pull mononoke/postgres:12.1-alpine
 ################################################
 # Some useful Docker commands
 # To list running docker containers: "docker ps"
@@ -38,11 +38,8 @@
 # log in to the image
 # Then  su - postgres
 # Or sudo -i -u postgres
-# The connect to the cms DB:  psql --username cms --dbname cms
-# exit with cms=# \q
+# The connect to the DB:  psql --username something --dbname something
+# exit with something=# \q
 ###############################################
 
-FROM postgres:9.6.2
-
-## Copy the CMS schema across. This will be run on first initialisation
-##COPY cms-db.sql /docker-entrypoint-initdb.d
+FROM postgres:12.1-alpine
